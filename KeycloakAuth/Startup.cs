@@ -68,7 +68,7 @@ namespace KeycloakAuth
                 //Keycloak .wellknown config origin to fetch config
                 options.MetadataAddress = Configuration.GetSection("Keycloak")["Metadata"];
                 //Require keycloak to use SSL
-                options.RequireHttpsMetadata = true;
+                options.RequireHttpsMetadata = false;
                 options.GetClaimsFromUserInfoEndpoint = true;
                 options.Scope.Add("openid");
                 options.Scope.Add("profile");
