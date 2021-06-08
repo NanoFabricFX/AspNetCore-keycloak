@@ -72,6 +72,7 @@ namespace KeycloakAuth
                 options.GetClaimsFromUserInfoEndpoint = true;
                 options.Scope.Add("openid");
                 options.Scope.Add("profile");
+                options.Scope.Add("offline_access");
                 //Save the token
                 options.SaveTokens = true;
                 //Token response type, will sometimes need to be changed to IdToken, depending on config.
