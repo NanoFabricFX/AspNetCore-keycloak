@@ -6,6 +6,7 @@ I had troubles finding resources about the subject for ASP.NET Core and got quit
 I ended up cracking the issue and created this solution and guide to help anyone having the same problem.  
 Feel free to edit the code, by submitting a PR.  
 May the code be with you :relaxed:  
+[aspnetcore 应用 接入Keycloak快速上手指南](https://www.cnblogs.com/shanyou/p/14751793.html)
 
 ## Start
 Clone the repo and open KeycloakAuth.sln in Visual Studio or VS Code.  
