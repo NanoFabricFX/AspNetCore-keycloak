@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeycloakAuth", "KeycloakAuth\KeycloakAuth.csproj", "{2EAF0556-908E-41DD-9BCD-581E53D746FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeycloakAuth", "KeycloakAuth\KeycloakAuth.csproj", "{2EAF0556-908E-41DD-9BCD-581E53D746FF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfIdentity.Wpf", "WpfIdentity.Wpf\WpfIdentity.Wpf.csproj", "{63A4978C-650E-4420-8D25-47D09865DD5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{2EAF0556-908E-41DD-9BCD-581E53D746FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EAF0556-908E-41DD-9BCD-581E53D746FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EAF0556-908E-41DD-9BCD-581E53D746FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63A4978C-650E-4420-8D25-47D09865DD5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63A4978C-650E-4420-8D25-47D09865DD5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63A4978C-650E-4420-8D25-47D09865DD5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63A4978C-650E-4420-8D25-47D09865DD5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
