@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,18 +33,21 @@ namespace WpfIdentity.Wpf
         {
             InitializeComponent();
             Loaded += Start;
+            ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
         }
 
         public async void Start(object sender, RoutedEventArgs e)
         {
             var options = new OidcClientOptions()
             {
-                Authority = "http://localhost:8080/auth/realms/demo/",
+                Authority = "https://keycloak-ctos.apps.hkhit-ocp1.sit.cmft.com/auth/realms/basic/",
                 ClientId = "wpf",
                 Scope = "openid profile email offline_access",
                 RedirectUri = "https://notused",
-                Browser = new WpfEmbeddedBrowser()
-            };
+                Browser = new WpfEmbeddedBrowser(),
+                RefreshDiscoveryOnSignatureFailure = false,
+                BackchannelHandler = new HttpClientHandler() { ServerCertificateCustomValidationCallback = (message, certificate, chain, sslPolicyErrors) => true }
+        };
 
             _oidcClient = new OidcClient(options);
 

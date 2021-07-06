@@ -12,6 +12,10 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.HttpOverrides;
+using System.Net;
+using System.Net.Security;
+using System.Net.Http;
+using System.Security.Authentication;
 
 namespace KeycloakAuth
 {
@@ -28,6 +32,8 @@ namespace KeycloakAuth
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+
             services.AddControllersWithViews();
             
             services.AddAuthentication(options =>
@@ -68,7 +74,7 @@ namespace KeycloakAuth
                 //Keycloak .wellknown config origin to fetch config
                 options.MetadataAddress = Configuration.GetSection("Keycloak")["Metadata"];
                 //Require keycloak to use SSL
-                options.RequireHttpsMetadata = false;
+                options.RequireHttpsMetadata = true;
                 options.GetClaimsFromUserInfoEndpoint = true;
                 options.Scope.Add("openid");
                 options.Scope.Add("profile");
@@ -88,7 +94,7 @@ namespace KeycloakAuth
                     ValidateIssuer = true
                 };
 
-
+                options.BackchannelHttpHandler = GetHandler();
             });
 
             /*
@@ -130,6 +136,15 @@ namespace KeycloakAuth
            
             //services.AddAuthorization();
 
+        }
+
+        private static HttpClientHandler GetHandler()
+        {
+            var handler = new HttpClientHandler();
+            handler.ClientCertificateOptions = ClientCertificateOption.Automatic;
+            handler.SslProtocols = SslProtocols.Tls12;
+            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+            return handler;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
